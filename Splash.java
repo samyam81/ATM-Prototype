@@ -1,9 +1,12 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.*;
 
 import javax.swing.*;
 
-public class Splash extends JFrame {
+public class Splash extends JFrame implements ActionListener{
+
+
     JFrame frame;
     JLabel language;
     JLabel bankLabel;
@@ -54,6 +57,7 @@ public class Splash extends JFrame {
         //English Language
         english=new JButton(" English ");
         english.setFont(engFont);
+        english.addActionListener(this);
         english.setFocusable(false);
         english.setBackground(new Color(112, 128, 144));
         english.setForeground(new Color(249, 246, 238));
@@ -80,4 +84,11 @@ public class Splash extends JFrame {
     public static void main(String args[]) {
         new Splash();
     }
+
+    @Override
+public void actionPerformed(ActionEvent e){
+    if (e.getSource()==english) {
+        new EngTRANS();
+    }
+}
 }
