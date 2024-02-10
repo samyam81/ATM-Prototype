@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
-public class EngWITH extends JFrame{
-    public static void main(String[] args) {
-        new EngWITH();
-    }
+public class EngWITH extends JFrame implements ActionListener {
+//     public static void main(String[] args) {
+//         new EngWITH();
+//     }
 
     JFrame frame;
     JLabel bankLabel;
@@ -38,6 +39,7 @@ public class EngWITH extends JFrame{
                 // Button for Five Hundred Rupees
         fiveHundred=new JButton("Rupees Five Hundred");
         fiveHundred.setFont(myFont);
+        fiveHundred.addActionListener(this);
         fiveHundred.setBackground(new Color(112, 128, 144));
         fiveHundred.setForeground(new Color(249, 246, 238));       
         fiveHundred.setBounds(15,200,230,50);
@@ -46,6 +48,7 @@ public class EngWITH extends JFrame{
                 // button for thousand
         thousand=new JButton("Rupees Thousand");
         thousand.setFont(myFont);
+        thousand.addActionListener(this);
         thousand.setBackground(new Color(112, 128, 144));
         thousand.setForeground(new Color(249, 246, 238));       
         thousand.setBounds(15,280,230,50);
@@ -54,6 +57,7 @@ public class EngWITH extends JFrame{
                  // button for two-thousand
         thousand2=new JButton("Rupees Two Thousand");
         thousand2.setFont(myFont);
+        thousand2.addActionListener(this);       
         thousand2.setBackground(new Color(112, 128, 144));
         thousand2.setForeground(new Color(249, 246, 238));       
         thousand2.setBounds(15,360,230,50);
@@ -62,6 +66,7 @@ public class EngWITH extends JFrame{
                 // button for five-thousand
         thousand5=new JButton("Rupees Five Thousand");
         thousand5.setFont(myFont);
+        thousand5.addActionListener(this);
         thousand5.setBackground(new Color(112, 128, 144));
         thousand5.setForeground(new Color(249, 246, 238));       
         thousand5.setBounds(500,200,230,50);
@@ -70,6 +75,7 @@ public class EngWITH extends JFrame{
                 // button for five-thousand
         thousand10=new JButton("Rupees Ten Thousand");
         thousand10.setFont(myFont);
+        thousand10.addActionListener(this);
         thousand10.setBackground(new Color(112, 128, 144));
         thousand10.setForeground(new Color(249, 246, 238));       
         thousand10.setBounds(500,280,230,50);
@@ -78,6 +84,7 @@ public class EngWITH extends JFrame{
                         // button for five-thousand
         thousand25=new JButton(" Twenty-Five Thousand");
         thousand25.setFont(myFont);
+        thousand25.addActionListener(this);
         thousand25.setBackground(new Color(112, 128, 144));
         thousand25.setForeground(new Color(249, 246, 238));       
         thousand25.setBounds(500,360,230,50);
@@ -92,4 +99,21 @@ public class EngWITH extends JFrame{
         frame.add(thousand25);
         frame.setVisible(true);
     }
+@Override
+public void actionPerformed(ActionEvent e){
+  if (e.getSource()==fiveHundred
+  ||
+  e.getSource()==thousand
+  ||
+  e.getSource()==thousand2
+  ||
+  e.getSource()==thousand5
+  ||
+  e.getSource()==thousand10
+  ||
+  e.getSource()==thousand25) {
+        new EngDONE();
+  }
+}
+
 }
