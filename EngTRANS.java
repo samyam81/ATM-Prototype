@@ -1,10 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
-public class EngTRANS extends JFrame{
-    public static void main(String[] args) {
-         new EngTRANS();
-    }
+
+public class EngTRANS extends JFrame implements ActionListener {
+    // public static void main(String[] args) {
+    //      new EngTRANS();
+    // }
 
     JFrame frame;
     JLabel bankLabel;
@@ -16,7 +18,7 @@ public class EngTRANS extends JFrame{
     Font myFont = new Font("Dialog", Font.BOLD, 30);
     Font myFont1 = new Font("Monospaced", Font.BOLD, 25);
 
-    EngTRANS(){
+    public EngTRANS(){
         // defining the frame;
         frame = new JFrame("Pawan Bank PVT LTD");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,6 +35,7 @@ public class EngTRANS extends JFrame{
         // defining the Withdrawl button;
         Withdrawl=new JButton("Withdrawl");
         Withdrawl.setFont(myFont1);
+        Withdrawl.addActionListener(this);
         Withdrawl.setFocusable(false);
         Withdrawl.setBackground(new Color(112, 128, 144));
         Withdrawl.setForeground(new Color(249, 246, 238));
@@ -48,6 +51,7 @@ public class EngTRANS extends JFrame{
 
                 //defining the Payment button;
         Payment=new JButton("Payment");
+        Payment.addActionListener(this);
         Payment.setFont(myFont1);
         Payment.setFocusable(false);
         Payment.setBackground(new Color(112, 128, 144));
@@ -57,6 +61,7 @@ public class EngTRANS extends JFrame{
                 //defining the Enquiry button;
         Enquiry=new JButton("Enquiry");
         Enquiry.setFont(myFont1);
+        Enquiry.addActionListener(this);
         Enquiry.setFocusable(false);
         Enquiry.setBackground(new Color(112, 128, 144));
         Enquiry.setForeground(new Color(249, 246, 238));
@@ -72,4 +77,18 @@ public class EngTRANS extends JFrame{
         frame.setVisible(true);
     }
 
+@Override
+public void actionPerformed(ActionEvent e){
+
+    if (e.getSource()==Withdrawl) {
+       new EngWITH();
+    }
+
+    if (e.getSource()==Enquiry) {
+       new EngENQ();
+    }
+    if (e.getSource()==Payment) {
+       new EngPAY();
+    }
+}
 }
