@@ -1,18 +1,28 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 
 public class EngPIN extends JFrame implements ActionListener{
-    public static void main(String[] args) {
-        new EngPIN();
-    }
+    // public static void main(String[] args) {
+    //     new EngPIN();
+    // }
 
     JFrame frame;
     JLabel bankLabel;
     JLabel textfield=new JLabel();
     JButton[] numButtons=new JButton[10];  
     JPanel panel;
+    JButton delButton,OkButton;
 
     String Pin;
 
@@ -46,6 +56,22 @@ public class EngPIN extends JFrame implements ActionListener{
                 numButtons[i].setFont(myFont);
                 numButtons[i].setFocusable(false);
         }
+                // defining the Delete button
+        delButton=new JButton("del");
+        delButton.addActionListener(this);
+        delButton.setFont(myFont);
+        delButton.setContentAreaFilled(true);
+        delButton.setFocusable(false);
+        delButton.setBounds(170, 460, 90, 70);
+
+                    //defining The Okay Button
+        OkButton=new JButton("Ok");
+        OkButton.addActionListener(this);
+        OkButton.setFont(myFont);
+        OkButton.setFocusable(false);
+        OkButton.setContentAreaFilled(true);
+        OkButton.setBounds(380, 460, 90, 70);
+
 
         //  Defining the Panel.
         panel=new JPanel();
@@ -73,6 +99,8 @@ public class EngPIN extends JFrame implements ActionListener{
         frame.setLayout(null);
         frame.add(textfield);
         frame.add(bankLabel);
+        frame.add(delButton);
+        frame.add(OkButton);
         frame.setVisible(true);
         
     }
@@ -87,6 +115,40 @@ public void actionPerformed(ActionEvent e) {
             textfield.setText(textfield.getText().concat("*"));
         }
     }
+        if(e.getSource()==delButton){
+            String string=textfield.getText();
+            textfield.setText("");
+            for (int i = 0; i < string.length()-1; i++) {
+                textfield.setText(textfield.getText()+string.charAt(i));
+            }
+        }
 
-  }
+
+  if (e.getSource() == OkButton) {
+    try {
+        String pass = String.valueOf(Pin);
+
+        DBconn conn = new DBconn();
+
+        // Use PreparedStatement to avoid SQL injection
+        String query = "SELECT * FROM login WHERE PIN=?";
+        PreparedStatement preparedStatement = conn.connection.prepareStatement(query);
+        preparedStatement.setString(1, pass);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        if (resultSet.next()) {
+            // PIN is correct, proceed to the next step
+            new EngTRANS();
+        } else {
+            // PIN is incorrect, display a message
+            textfield.setText("Invalid PIN");
+        }
+
+    } catch (Exception E) {
+        E.printStackTrace();
+    }
+}
+
+}
 }
