@@ -1,0 +1,45 @@
+Create Database BankATM;
+use BankATM;
+CREATE TABLE Customers (
+    Name VARCHAR(250),
+    Address VARCHAR(251),
+    CustomerID VARCHAR(20),
+    PRIMARY KEY (CustomerID),
+    MobileNO VARCHAR(20)
+);
+
+CREATE TABLE Accounts (
+    AccountNO VARCHAR(50),
+    PRIMARY KEY (AccountNO),
+    Balance DOUBLE,
+    PIN CHAR(4) NOT NULL
+);
+
+ALTER TABLE Accounts
+ADD INDEX idx_PIN (PIN);
+
+CREATE TABLE login (
+    PIN CHAR(4),
+    CustomerID VARCHAR(20),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (PIN) REFERENCES Accounts(PIN)
+);
+
+insert into Customers(Name, Address, CustomerID, MobileNO)
+values
+('Samyam Subedi','Kapan','111','9832123456'),
+('Prashant Sharma','Dang','112','9832234567'),
+('Rajan Adhikari','PachTHAR','113','9832345678');
+
+INSERT INTO Accounts (AccountNO, Balance, PIN)
+VALUES ('A001', 1000.00, '1234'),
+       ('A002', 2500.50, '5678'),
+       ('A003', 500.75, '9876');
+       
+insert into login(PIN,CustomerID)
+values
+('1234','111'),
+('5678','112'),
+('9876','113');
+
+select *from login;
