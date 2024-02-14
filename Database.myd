@@ -28,8 +28,23 @@ INSERT INTO Accounts (AccountNO, Balance, PIN)
 VALUES ('A001', 1000.00, '1234'),
        ('A002', 2500.50, '5678'),
        ('A003', 500.75, '9876');
-
-
+insert into Customers(Name, Address, CustomerID, MobileNO)
+value ('Memphis Depay','Dutch','120','3232323232');
+INSERT INTO Accounts (AccountNO, Balance, PIN)
+value ('A007',1000000.00,'1234');
+DROP TABLE IF EXISTS login, login10;
+create table login10(
+PIN CHAR(4),
+    CustomerID VARCHAR(20),
+       Balance DOUBLE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (PIN) REFERENCES Accounts(PIN)
+    );
+ insert into login10 (PIN,CustomerID,Balance)
+values
+('1234','120',1000000.00);      
+select *from login10;
+/*
 create table login10(
 PIN CHAR(4),
     CustomerID VARCHAR(20),
@@ -41,7 +56,7 @@ values
 ('1234','111');    
 select *from login10;
        
-/*
+
 CREATE TABLE login (
     PIN CHAR(4),
     CustomerID VARCHAR(20),
