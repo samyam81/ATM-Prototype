@@ -18,13 +18,6 @@ CREATE TABLE Accounts (
 ALTER TABLE Accounts
 ADD INDEX idx_PIN (PIN);
 
-CREATE TABLE login (
-    PIN CHAR(4),
-    CustomerID VARCHAR(20),
-    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
-    FOREIGN KEY (PIN) REFERENCES Accounts(PIN)
-);
-
 insert into Customers(Name, Address, CustomerID, MobileNO)
 values
 ('Samyam Subedi','Kapan','111','9832123456'),
@@ -35,11 +28,30 @@ INSERT INTO Accounts (AccountNO, Balance, PIN)
 VALUES ('A001', 1000.00, '1234'),
        ('A002', 2500.50, '5678'),
        ('A003', 500.75, '9876');
+
+
+create table login10(
+PIN CHAR(4),
+    CustomerID VARCHAR(20),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (PIN) REFERENCES Accounts(PIN)
+    );
+insert into login10 (PIN,CustomerID)
+values
+('1234','111');    
+select *from login10;
        
+/*
+CREATE TABLE login (
+    PIN CHAR(4),
+    CustomerID VARCHAR(20),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (PIN) REFERENCES Accounts(PIN)
+);
 insert into login(PIN,CustomerID)
 values
 ('1234','111'),
 ('5678','112'),
 ('9876','113');
 
-select *from login;
+select *from login; */
