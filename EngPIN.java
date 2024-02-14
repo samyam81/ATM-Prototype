@@ -13,9 +13,10 @@ import javax.swing.JPanel;
 
 
 public class EngPIN extends JFrame implements ActionListener{
-    // public static void main(String[] args) {
-    //     new EngPIN();
-    // }
+    
+    public static void main(String[] args) {
+        new EngPIN();
+    }
 
     JFrame frame;
     JLabel bankLabel;
@@ -23,8 +24,8 @@ public class EngPIN extends JFrame implements ActionListener{
     JButton[] numButtons=new JButton[10];  
     JPanel panel;
     JButton delButton,OkButton;
-
-    String Pin;
+  String Pin="";
+ 
 
     Font myFont = new Font("Dialog", Font.BOLD, 30);
     EngPIN(){
@@ -107,14 +108,14 @@ public class EngPIN extends JFrame implements ActionListener{
 
 @Override
 public void actionPerformed(ActionEvent e) {
-    Pin = ""; //Set the pin or it will be error.
      
-    for (int i = 0; i < 10; i++) {
-        if (e.getSource() == numButtons[i]) {
-            Pin += String.valueOf(i);
-            textfield.setText(textfield.getText().concat("*"));
-        }
-    }
+     
+  for (int i = 0; i < 10; i++) {
+      if (e.getSource() == numButtons[i]) {
+        Pin += String.valueOf(i);
+        textfield.setText(textfield.getText().concat("*"));
+      }
+}
         if(e.getSource()==delButton){
             String string=textfield.getText();
             textfield.setText("");
@@ -124,16 +125,21 @@ public void actionPerformed(ActionEvent e) {
         }
 
 
-  if (e.getSource() == OkButton) {
+
+if (e.getSource() == OkButton) {
+    // This was to check the Value of PIN. <3
+    // System.out.println("Pin value before setting textfield: " + Pin);
+    // textfield.setText(Pin);
+
     try {
         String pass = String.valueOf(Pin);
 
         DBconn conn = new DBconn();
 
         // Use PreparedStatement to avoid SQL injection
-        String query = "SELECT * FROM login WHERE PIN=?";
+        String query = "SELECT * FROM login10 WHERE PIN = ?";
         PreparedStatement preparedStatement = conn.connection.prepareStatement(query);
-        preparedStatement.setString(1, pass);
+        preparedStatement.setString(1, pass);  // Set the PIN parameter
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -148,7 +154,8 @@ public void actionPerformed(ActionEvent e) {
     } catch (Exception E) {
         E.printStackTrace();
     }
-}
+ }
 
 }
 }
+
