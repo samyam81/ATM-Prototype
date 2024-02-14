@@ -4,6 +4,7 @@ import java.awt.event.*;
 
 
 public class EngWITH extends JFrame implements ActionListener {
+        
 //     public static void main(String[] args) {
 //         new EngWITH();
 //     }
@@ -20,6 +21,7 @@ public class EngWITH extends JFrame implements ActionListener {
     Font myFont = new Font("Serrif", Font.PLAIN, 15);
     Font myFont1 = new Font("Monospaced", Font.BOLD, 30);
 
+    double balance;
 
     public EngWITH(){
 
@@ -99,20 +101,92 @@ public class EngWITH extends JFrame implements ActionListener {
         frame.add(thousand25);
         frame.setVisible(true);
     }
+    
 @Override
 public void actionPerformed(ActionEvent e){
-  if (e.getSource()==fiveHundred
-  ||
-  e.getSource()==thousand
-  ||
-  e.getSource()==thousand2
-  ||
-  e.getSource()==thousand5
-  ||
-  e.getSource()==thousand10
-  ||
-  e.getSource()==thousand25) {
-        new EngDONE();
+  if (e.getSource()==fiveHundred) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=500) {
+         // Calculate the new balance after deducting 500
+            double newBalance = balance - 500;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
+  }
+    if (e.getSource()==thousand) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=1000) {
+         // Calculate the new balance after deducting 1000
+            double newBalance = balance - 1000;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
+  }
+     if (e.getSource()==thousand2) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=2000) {
+         // Calculate the new balance after deducting 2000
+            double newBalance = balance - 2000;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
+  }
+       if (e.getSource()==thousand5) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=5000) {
+         // Calculate the new balance after deducting 5000
+            double newBalance = balance - 5000;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
+  }
+       if (e.getSource()==thousand10) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=10000) {
+         // Calculate the new balance after deducting 10000
+            double newBalance = balance - 10000;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
+  }
+       if (e.getSource()==thousand25) {
+        DBconn dbConn=new DBconn(); 
+         double balance = dbConn.getBalance(1234,"120");
+        if (balance >=25000) {
+         // Calculate the new balance after deducting 25000
+            double newBalance = balance - 25000;
+
+            // Update the balance in the database
+            dbConn.updateBalance(1234, "120", newBalance);
+            new EngDONE();
+        }else{
+                new EngOFO();
+        }
   }
 }
 
