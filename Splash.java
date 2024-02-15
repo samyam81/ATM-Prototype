@@ -1,12 +1,18 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.*;
-
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Splash extends JFrame implements ActionListener{
 
+    public static void main(String args[]) {
+        new Splash();
+    }
 
+    
     JFrame frame;
     JLabel language;
     JLabel bankLabel;
@@ -19,6 +25,7 @@ public class Splash extends JFrame implements ActionListener{
     Font bankLabelFont = new Font("Serif", Font.BOLD, 30);
     Font motoLabelFont = new Font("Dialog", Font.ITALIC, 18);
     Font engFont = new Font("Dialog", Font.BOLD, 15);
+    
     Splash() {
 
         // Defing the frame
@@ -81,14 +88,12 @@ public class Splash extends JFrame implements ActionListener{
         frame.setVisible(true);
     }
 
-    public static void main(String args[]) {
-        new Splash();
-    }
+
 
     @Override
 public void actionPerformed(ActionEvent e){
     if (e.getSource()==english) {
-        new EngTRANS();
+        new EngPIN();
     }
 }
 }
